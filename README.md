@@ -1,33 +1,49 @@
-# Document Summary Assistant
+# Document Intelligence Workstation
 
-A clean, production-ready full-stack web application designed for automatic document text extraction and AI-powered summarization.
+An AI-powered document analysis platform that extracts text from PDFs and images, performs OCR when required, and generates structured summaries using Google's Gemini AI.
 
 ---
 
 ## Overview
 
-Document Summary Assistant enables users to upload PDF files or document images (PNG, JPG, WEBP) and generate summaries in three length modes (Short, Medium, Long), accompanied by structured Key Points and Main Takeaways.
+Document Intelligence Workstation enables users to upload PDF documents or image files, extract readable text, and generate AI-powered summaries with key insights and takeaways.
 
-The application features a dedicated provider-agnostic AI service layer that communicates with Hugging Face's `facebook/bart-large-cnn` inference model, allowing seamless expansion to other AI providers (such as OpenAI, Gemini, or Groq) without altering UI components.
+The application combines PDF parsing, OCR processing, and Google's Gemini 1.5 Flash model to provide fast and accurate document intelligence in a modern industrial-style interface.
 
 ---
 
-## Key Features
+## Features
 
-- **Multi-Format Upload**: Drag-and-drop or file browser support for PDF documents and image files.
-- **Client-Side Text Extraction**:
-  - PDF text parsing preserving paragraph structures via `pdfjs-dist`.
-  - Optical Character Recognition (OCR) for image files using `tesseract.js` with progress reporting.
-- **Flexible Summary Lengths**: Choose between Short (~50-80 words), Medium (~100-180 words), or Long (~200-350 words) summary modes.
-- **Structured Output**: Displays extracted text preview, generated summary, key bullet points (3-8 items), and main takeaways.
-- **Provider-Agnostic Architecture**: Decoupled service layer in `src/services/summarizer.js`.
-- **Validation & Safety**: File size limits (10MB max), type checking, error notifications, and disabled action buttons during processing.
+### Document Processing
+- Upload PDF documents
+- Upload image files (PNG, JPG, JPEG, WEBP)
+- Automatic PDF text extraction using PDF.js
+- OCR-based text extraction using Tesseract.js
+- Real-time processing status updates
+
+### AI Summarization
+- Powered by Google Gemini 1.5 Flash
+- Three summary modes:
+  - Short
+  - Medium
+  - Long
+- Executive summary generation
+- Key point extraction
+- Main takeaway identification
+
+### User Interface
+- Industrial workstation-inspired design
+- Dark mode and Light mode support
+- Responsive desktop and mobile layouts
+- Copy-to-clipboard functionality
+- Error handling and validation feedback
+- Interactive processing indicators
 
 ---
 
 ## Folder Structure
 
-```
+```text
 Document Summarizer/
 ├── .env.example
 ├── index.html
@@ -40,28 +56,44 @@ Document Summarizer/
     ├── App.jsx
     ├── main.jsx
     ├── index.css
+    │
     ├── components/
     │   ├── FileUpload.jsx
+    │   ├── GridBackground.jsx
     │   ├── KeyPoints.jsx
     │   ├── LoadingSpinner.jsx
     │   ├── SummaryCard.jsx
-    │   └── SummaryOptions.jsx
-    ├── services/
-    │   ├── ocrExtractor.js
-    │   ├── pdfExtractor.js
-    │   └── summarizer.js
-    └── pages/
-        └── Home.jsx
+    │   ├── SummaryOptions.jsx
+    │   └── ThemeToggle.jsx
+    │
+    ├── pages/
+    │   └── Home.jsx
+    │
+    └── services/
+        ├── ocrExtractor.js
+        ├── pdfExtractor.js
+        └── summarizer.js
 ```
 
 ---
 
 ## Technologies Used
 
-- **Frontend**: React 18, Vite, Tailwind CSS
-- **Document Processing**: `pdfjs-dist` (PDF parsing), `tesseract.js` (OCR)
-- **HTTP Client**: Axios
-- **AI Model**: Hugging Face Inference API (`facebook/bart-large-cnn`)
+### Frontend
+- React 18
+- Vite
+- Tailwind CSS
+
+### Document Processing
+- PDF.js (`pdfjs-dist`)
+- Tesseract.js
+
+### AI Integration
+- Google Gemini 1.5 Flash API
+
+### Utilities
+- Axios
+- Lucide React
 
 ---
 
@@ -69,65 +101,141 @@ Document Summarizer/
 
 ### 1. Prerequisites
 
-Ensure Node.js (v18.0.0 or higher) and `npm` are installed on your machine.
+Ensure the following are installed:
+
+- Node.js (v18+)
+- npm
+
+---
 
 ### 2. Environment Configuration
 
-Copy `.env.example` to `.env` in the root directory:
-
-```bash
-cp .env.example .env
-```
-
-Add your Hugging Face API Token:
+Create a `.env` file in the project root:
 
 ```env
-VITE_HF_TOKEN=your_hugging_face_token_here
+VITE_GEMINI_API_KEY=your_gemini_api_key
 ```
 
-*(You can obtain a free API token from your [Hugging Face Settings](https://huggingface.co/settings/tokens)).*
+You can obtain an API key from:
 
-### 3. Installation
+https://aistudio.google.com
 
-Install all required dependencies:
+---
+
+### 3. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 4. Start Development Server
+---
 
-Run the local development server:
+### 4. Start Development Server
 
 ```bash
 npm run dev
 ```
 
-Open your browser and navigate to `http://localhost:3000`.
+Open:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## Production Build
+
+Build the application:
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
 
 ---
 
 ## Deployment to Vercel
 
-### Step 1: Push Code to Repository
+### Step 1: Push Repository to GitHub
 
-*(Note: Perform git initialization and repository creation manually when ready).*
+```bash
+git add .
+git commit -m "Initial project commit"
+git push origin main
+```
+
+---
 
 ### Step 2: Import into Vercel
 
-1. Log in to [Vercel Dashboard](https://vercel.com).
-2. Click **Add New** > **Project**.
-3. Select your repository.
+1. Sign in to Vercel.
+2. Click **Add New → Project**.
+3. Import the GitHub repository.
 
-### Step 3: Configure Build Settings & Environment Variables
+---
 
-- **Framework Preset**: Vite
-- **Build Command**: `npm run build`
-- **Output Directory**: `dist`
-- **Environment Variable**:
-  - Key: `VITE_HF_TOKEN`
-  - Value: Your Hugging Face API Token
+### Step 3: Configure Environment Variables
+
+Add:
+
+```text
+VITE_GEMINI_API_KEY
+```
+
+with your Gemini API key value.
+
+Build settings:
+
+```text
+Framework Preset: Vite
+Build Command: npm run build
+Output Directory: dist
+```
+
+---
 
 ### Step 4: Deploy
 
-Click **Deploy**. Vercel will build and host your production web application.
+Click **Deploy**.
+
+Vercel will automatically build and host the application.
+
+---
+
+## Supported File Types
+
+| Format | Supported |
+|----------|----------|
+| PDF | Yes |
+| PNG | Yes |
+| JPG | Yes |
+| JPEG | Yes |
+| WEBP | Yes |
+
+---
+
+## Future Improvements
+
+- DOCX document support
+- Chat with document
+- Summary export (PDF/TXT)
+- Multi-document analysis
+- Multi-language OCR
+- Summary history
+- User authentication
+
+---
+
+## Author
+
+Smayan Paul
+
+Engineering Student
+
+Document Intelligence Workstation
