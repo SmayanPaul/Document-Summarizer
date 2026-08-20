@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-radius: 0px !important;
+  }
+
+  body {
+    font-family: 'IBM Plex Mono', monospace;
+    background-color: #e4e4e4;
+    color: #111111;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .dark body {
+    background-color: #080808;
+    color: #f5f5f5;
+  }
+}
+
+/* Workstation Minor & Major Background Grids */
+.minor-grid {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.dark .minor-grid {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.major-grid {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.12) 1px, transparent 1px);
+  background-size: 300px 300px;
+}
+
+.dark .major-grid {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+
+::selection {
+  background-color: #fc6e1c;
+  color: #ffffff;
+}
+
+.dark ::selection {
+  background-color: #ff6b2c;
+  color: #000000;
+}
+
+/* Industrial Terminal Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e4e4e4;
+  border-left: 1px solid #d0d0d0;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #080808;
+  border-left: 1px solid #202020;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d0d0d0;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #202020;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fc6e1c;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #ff6b2c;
+}
