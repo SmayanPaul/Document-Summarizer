@@ -83,11 +83,10 @@ export default function FileUpload({ onFileSelected, selectedFile, onClearFile, 
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className={`border p-4 transition-colors duration-150 ${
-          isDragOver
-            ? 'border-[#fc6e1c] dark:border-[#ff6b2c] bg-[#fc6e1c]/10 dark:bg-[#ff6b2c]/10'
-            : 'border-[#d0d0d0] dark:border-[#202020] bg-[#e4e4e4] dark:bg-[#080808]'
-        }`}
+        className={`border p-4 transition-colors duration-150 ${isDragOver
+          ? 'border-[#fc6e1c] dark:border-[#ff6b2c] bg-[#fc6e1c]/10 dark:bg-[#ff6b2c]/10'
+          : 'border-[#d0d0d0] dark:border-[#202020] bg-[#e4e4e4] dark:bg-[#080808]'
+          }`}
       >
         {selectedFile ? (
           <div className="space-y-3 font-mono text-xs">
@@ -135,7 +134,7 @@ export default function FileUpload({ onFileSelected, selectedFile, onClearFile, 
         ) : (
           <div className="py-6 text-center space-y-3">
             <div className="font-mono text-xs text-[#666666] dark:text-[#7a7a7a]">
-              [ DRAG & DROP DOCUMENT HERE ]
+              [ DRAG & DROP DOCUMENT YOU WANT TO SUMMARIZE HERE]
             </div>
             <div className="font-mono text-[11px] text-[#666666] dark:text-[#7a7a7a]">
               SUPPORTED: PDF &bull; PNG &bull; JPG &bull; WEBP (MAX 10MB)
