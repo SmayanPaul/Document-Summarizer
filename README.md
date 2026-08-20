@@ -1,5 +1,7 @@
 # Document Intelligence Workstation
 
+🔗 Live Demo: https://document-summarizer-fawn.vercel.app/
+
 An AI-powered document analysis platform that extracts text from PDFs and images, performs OCR when required, and generates structured summaries using Google's Gemini AI.
 
 ---
@@ -160,53 +162,6 @@ npm run preview
 
 ---
 
-## Deployment to Vercel
-
-### Step 1: Push Repository to GitHub
-
-```bash
-git add .
-git commit -m "Initial project commit"
-git push origin main
-```
-
----
-
-### Step 2: Import into Vercel
-
-1. Sign in to Vercel.
-2. Click **Add New → Project**.
-3. Import the GitHub repository.
-
----
-
-### Step 3: Configure Environment Variables
-
-Add:
-
-```text
-VITE_GEMINI_API_KEY
-```
-
-with your Gemini API key value.
-
-Build settings:
-
-```text
-Framework Preset: Vite
-Build Command: npm run build
-Output Directory: dist
-```
-
----
-
-### Step 4: Deploy
-
-Click **Deploy**.
-
-Vercel will automatically build and host the application.
-
----
 
 ## Supported File Types
 
